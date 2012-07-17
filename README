@@ -2,6 +2,12 @@ app-store-ios-numbers-rankings
 
 ==============================
 
+Version 1.0 July 17, 2012
+
+Base bones. Got it kinda working. Code is a mess. I will be back :)
+
+------------------------------
+
 This is a simple app that gives detailed app store information in a very flexible implementation. We try to take the guess work out of the real numbers: downloads, revenue.
 
 The premise behind this app is to use app store reviews to try to gauge how many times an application has been downloaded. A common industry standard is 1 review on the app store equals 400 downloads. This is the default implementation which is configurable in the settings menu.
