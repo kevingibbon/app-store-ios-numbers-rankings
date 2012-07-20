@@ -11,5 +11,6 @@
 @interface SettingsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *editField;
 - (IBAction)editingFinished:(id)sender;
+- (IBAction)editFieldTouched:(id)sender;
 
 @end

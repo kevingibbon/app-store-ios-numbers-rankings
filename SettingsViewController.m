@@ -51,4 +51,8 @@
     [defaults synchronize];
     [[self navigationController] popViewControllerAnimated:YES];
 }
+
+- (IBAction)editFieldTouched:(id)sender {
+    NSLog(@"test");
+}
 @end

@@ -24,6 +24,7 @@
 {
     NSMutableArray *items;
     NSInteger numThreads;
+    NSInteger numUpdated;
     NSMutableArray *urls;
     NSInteger page;
     CGFloat lastScrollPosition;

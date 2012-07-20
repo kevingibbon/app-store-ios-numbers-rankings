@@ -358,6 +358,8 @@
 		0A87B26715ACA8950086CA26 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kevin Gibbon (92XJL9U4BZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kevin Gibbon (92XJL9U4BZ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -366,6 +368,8 @@
 				GCC_PREFIX_HEADER = "AppStoreRanking/AppStoreRanking-Prefix.pch";
 				INFOPLIST_FILE = "AppStoreRanking/AppStoreRanking-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3D51A42B-FC33-495D-9FF3-C21FB6F21612";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3D51A42B-FC33-495D-9FF3-C21FB6F21612";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -373,6 +377,7 @@
 		0A87B26815ACA8950086CA26 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ICON entertainment";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -381,6 +386,7 @@
 				GCC_PREFIX_HEADER = "AppStoreRanking/AppStoreRanking-Prefix.pch";
 				INFOPLIST_FILE = "AppStoreRanking/AppStoreRanking-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "975C9CED-B532-4449-8F61-563A887DB911";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

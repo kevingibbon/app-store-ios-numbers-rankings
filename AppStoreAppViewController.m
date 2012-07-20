@@ -337,23 +337,35 @@
                     }
                     if (!exsists)
                     {
+                        appStoreParseObject = [PFObject objectWithClassName:@"AppStoreApp"];
                         if (appStoreObject.price == nil)
                         {
                             appStoreObject.price = [NSNumber numberWithInt:0];
                         }
-                        appStoreParseObject = [PFObject objectWithClassName:@"AppStoreApp"];
-                        [appStoreParseObject setObject:appStoreObject.category forKey:@"category"];
-                        [appStoreParseObject setObject:appStoreObject.type forKey:@"type"];
-                        [appStoreParseObject setObject:appStoreObject.url forKey:@"url"];
-                        [appStoreParseObject setObject:appStoreObject.rating forKey:@"rating"];
-                        [appStoreParseObject setObject:appStoreObject.price forKey:@"price"];
-                        [appStoreParseObject setObject:appStoreObject.numberReviews forKey:@"numberReviews"];
-                        [appStoreParseObject setObject:appStoreObject.lastUpdated forKey:@"lastUpdated"];
-                        [appStoreParseObject setObject:appStoreObject.name forKey:@"name"];
-                        NSLog(@"Updating %@", appStoreParseObject);
-                        [appStoreParseObject saveInBackground];
-
                     }
+                        
+                    [appStoreParseObject setObject:appStoreObject.category forKey:@"category"];
+                    [appStoreParseObject setObject:appStoreObject.type forKey:@"type"];
+                    [appStoreParseObject setObject:appStoreObject.url forKey:@"url"];
+                    [appStoreParseObject setObject:appStoreObject.rating forKey:@"rating"];
+                    [appStoreParseObject setObject:appStoreObject.price forKey:@"price"];
+                    [appStoreParseObject setObject:appStoreObject.numberReviews forKey:@"numberReviews"];
+                    [appStoreParseObject setObject:appStoreObject.lastUpdated forKey:@"lastUpdated"];
+                    [appStoreParseObject setObject:appStoreObject.name forKey:@"name"];
+                    
+                    [appStoreParseObject setObject:[NSNumber numberWithInt:[appStoreObject.numberReviews intValue] * 100] forKey:@"estimateDownloads100"];
+                    [appStoreParseObject setObject:[NSNumber numberWithInt:[appStoreObject.numberReviews intValue] * 200] forKey:@"estimateDownloads200"];
+                    [appStoreParseObject setObject:[NSNumber numberWithInt:[appStoreObject.numberReviews intValue] * 300] forKey:@"estimateDownloads300"];
+                    [appStoreParseObject setObject:[NSNumber numberWithInt:[appStoreObject.numberReviews intValue] * 400] forKey:@"estimateDownloads400"];
+                        
+                    [appStoreParseObject setObject:[NSNumber numberWithFloat:[appStoreObject.numberReviews intValue] * 100 * [appStoreObject.price floatValue]] forKey:@"estimateRevenue100"];
+                    [appStoreParseObject setObject:[NSNumber numberWithFloat:[appStoreObject.numberReviews intValue] * 200 * [appStoreObject.price floatValue]] forKey:@"estimateRevenue200"];
+                    [appStoreParseObject setObject:[NSNumber numberWithFloat:[appStoreObject.numberReviews intValue] * 300 * [appStoreObject.price floatValue]] forKey:@"estimateRevenue300"];
+                    [appStoreParseObject setObject:[NSNumber numberWithFloat:[appStoreObject.numberReviews intValue] * 400 * [appStoreObject.price floatValue]] forKey:@"estimateRevenue400"];
+                    NSLog(@"Updating %@", appStoreParseObject);
+                    numUpdated++;
+                    NSLog(@"Updated %i",numUpdated);
+                    [appStoreParseObject saveInBackground];
                 } 
                 
             }];
@@ -430,7 +442,7 @@
     else {
         isRefreshingNewPage = YES;
     }
-    
+    numUpdated = 0;
     numThreads = 0;
 	page = 1;    
     items = [[NSMutableArray alloc] init];
@@ -440,8 +452,8 @@
     ////-------- 
     
     //-------- ADD TO INGEST DATA FROM TOP APP STORE LISTINGS
-    /*
-     urls = [[NSMutableArray alloc] initWithObjects:@"/us/rss/toppaidapplications/limit=300/json", @"/us/rss/toppaidapplications/limit=300/genre=6018/json", @"/us/rss/toppaidapplications/limit=300/genre=6000/json", @"/us/rss/toppaidapplications/limit=300/genre=6022/json", @"/us/rss/toppaidapplications/limit=300/genre=6017/json", @"/us/rss/toppaidapplications/limit=300/genre=6016/json", @"/us/rss/toppaidapplications/limit=300/genre=6015/json", @"/us/rss/toppaidapplications/limit=300/genre=6013/json", @"/us/rss/toppaidapplications/limit=300/genre=6012/json", @"/us/rss/toppaidapplications/limit=300/genre=6020/json", @"/us/rss/toppaidapplications/limit=300/genre=6011/json", @"/us/rss/toppaidapplications/limit=300/genre=6010/json", @"/us/rss/toppaidapplications/limit=300/genre=6009/json", @"/us/rss/toppaidapplications/limit=300/genre=6021/json", @"/us/rss/toppaidapplications/limit=300/genre=6008/json", @"/us/rss/toppaidapplications/limit=300/genre=6007/json", @"/us/rss/toppaidapplications/limit=300/genre=6006/json", @"/us/rss/toppaidapplications/limit=300/genre=6005/json", @"/us/rss/toppaidapplications/limit=300/genre=6004/json", @"/us/rss/toppaidapplications/limit=300/genre=6003/json", @"/us/rss/toppaidapplications/limit=300/genre=6002/json", @"/us/rss/toppaidapplications/limit=300/genre=6001/json", @"/us/rss/toppaidapplications/limit=300/genre=6014/json",nil];
+    
+     /*urls = [[NSMutableArray alloc] initWithObjects:@"/us/rss/toppaidapplications/limit=300/json", @"/us/rss/toppaidapplications/limit=300/genre=6018/json", @"/us/rss/toppaidapplications/limit=300/genre=6000/json", @"/us/rss/toppaidapplications/limit=300/genre=6022/json", @"/us/rss/toppaidapplications/limit=300/genre=6017/json", @"/us/rss/toppaidapplications/limit=300/genre=6016/json", @"/us/rss/toppaidapplications/limit=300/genre=6015/json", @"/us/rss/toppaidapplications/limit=300/genre=6013/json", @"/us/rss/toppaidapplications/limit=300/genre=6012/json", @"/us/rss/toppaidapplications/limit=300/genre=6020/json", @"/us/rss/toppaidapplications/limit=300/genre=6011/json", @"/us/rss/toppaidapplications/limit=300/genre=6010/json", @"/us/rss/toppaidapplications/limit=300/genre=6009/json", @"/us/rss/toppaidapplications/limit=300/genre=6021/json", @"/us/rss/toppaidapplications/limit=300/genre=6008/json", @"/us/rss/toppaidapplications/limit=300/genre=6007/json", @"/us/rss/toppaidapplications/limit=300/genre=6006/json", @"/us/rss/toppaidapplications/limit=300/genre=6005/json", @"/us/rss/toppaidapplications/limit=300/genre=6004/json", @"/us/rss/toppaidapplications/limit=300/genre=6003/json", @"/us/rss/toppaidapplications/limit=300/genre=6002/json", @"/us/rss/toppaidapplications/limit=300/genre=6001/json", @"/us/rss/toppaidapplications/limit=300/genre=6014/json",nil];
     
     [urls addObjectsFromArray:[[NSArray alloc] initWithObjects:@"/us/rss/topfreeapplications/limit=300/json", @"/us/rss/topfreeapplications/limit=300/genre=6018/json", @"/us/rss/topfreeapplications/limit=300/genre=6000/json", @"/us/rss/topfreeapplications/limit=300/genre=6022/json", @"/us/rss/topfreeapplications/limit=300/genre=6017/json", @"/us/rss/topfreeapplications/limit=300/genre=6016/json", @"/us/rss/topfreeapplications/limit=300/genre=6015/json", @"/us/rss/topfreeapplications/limit=300/genre=6013/json", @"/us/rss/topfreeapplications/limit=300/genre=6012/json", @"/us/rss/topfreeapplications/limit=300/genre=6020/json", @"/us/rss/topfreeapplications/limit=300/genre=6011/json", @"/us/rss/topfreeapplications/limit=300/genre=6010/json", @"/us/rss/topfreeapplications/limit=300/genre=6009/json", @"/us/rss/topfreeapplications/limit=300/genre=6021/json", @"/us/rss/topfreeapplications/limit=300/genre=6008/json", @"/us/rss/topfreeapplications/limit=300/genre=6007/json", @"/us/rss/topfreeapplications/limit=300/genre=6006/json", @"/us/rss/topfreeapplications/limit=300/genre=6005/json", @"/us/rss/topfreeapplications/limit=300/genre=6004/json", @"/us/rss/topfreeapplications/limit=300/genre=6003/json", @"/us/rss/topfreeapplications/limit=300/genre=6002/json", @"/us/rss/topfreeapplications/limit=300/genre=6001/json", @"/us/rss/topfreeapplications/limit=300/genre=6014/json",nil]];
     

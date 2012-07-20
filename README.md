@@ -33,4 +33,11 @@ Do apps that prompt users to review get more downloads/ratings? Probably. Do cer
 ------------------------------
 
 Notes
+
 1. Please do not start writing to this parse db. If you wish to host your own db, please change the parse api key. 
+
+------------------------------
+
+Bugs
+
+1. Sort by rankings does not sort by number of ranking. It currently sorts on server side by revenue at 400:1 ratio. Need to add 100, 200, 300, 400 pre-calculated revenue to db and sort based on those.
