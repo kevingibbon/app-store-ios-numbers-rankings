@@ -16,8 +16,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [Parse setApplicationId:@"oPf7CIfF0ZvCEmQWvMxlacFbFaBcPjKIqoZr1gp5"
-                  clientKey:@"rmErIUzVZG0DVLCd0mAmcDexOwtz3KfZOCNA8YhX"];
+    [Parse setApplicationId:@"APPLICATION_ID"
+                  clientKey:@"CLIENT_KEY"];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults integerForKey:@"numreviewtodownloads"] == 0)
