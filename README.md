@@ -4,10 +4,6 @@ app-store-ios-numbers-rankings
 
 Version 1.0 July 17, 2012 12:57 AM
 
-Bare bones. Got it kinda working. Code is a mess. I will be back :)
-
-![Alt text](http://assets3.pinimg.com/upload/287315651198126405_mOHgHeCU.jpg)
-
 ------------------------------
 
 This is a simple app that gives detailed app store information in a very flexible implementation. I'm trying to take the guess work out of real numbers: downloads, revenue.
